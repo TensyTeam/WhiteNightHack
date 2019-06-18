@@ -15,12 +15,28 @@ export const getQrCode = (socketName, query) => {
     );
 };
 
-const f = async() => {
+export const awaitStatus = ({ socket, identifier }) => {
+    return new Promise((resolve, reject) => {
+        socket.on(identifier, data => {
+            const parsedData = JSON.parse(data);
+            if (parsedData.status === "failure") {
+                reject(parsedData);
+            } else {
+                resolve(parsedData);
+            }
+        });
+    });
+};
+
+const f = async () => {
     const { qrCode: ssoQrCode, socket, identifier } = await getQrCode("authenticate");
+
+    const img = document.getElementById("img");
+    img.src = ssoQrCode;
+
+    const response = await awaitStatus({ socket, identifier })
+
     ReactDOM.render(<App />, document.getElementById("root"));
-}
+};
 
 f();
-
-
-
