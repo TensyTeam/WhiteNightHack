@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/spbu/static/css/main.352e7557.chunk.css",
+    "main.js": "/spbu/static/js/main.008b4857.chunk.js",
+    "main.js.map": "/spbu/static/js/main.008b4857.chunk.js.map",
+    "runtime~main.js": "/spbu/static/js/runtime~main.1718747b.js",
+    "runtime~main.js.map": "/spbu/static/js/runtime~main.1718747b.js.map",
+    "static/js/2.f201b570.chunk.js": "/spbu/static/js/2.f201b570.chunk.js",
+    "static/js/2.f201b570.chunk.js.map": "/spbu/static/js/2.f201b570.chunk.js.map",
+    "index.html": "/spbu/index.html",
+    "precache-manifest.fcf63cf45598e59f923733560a3446ed.js": "/spbu/precache-manifest.fcf63cf45598e59f923733560a3446ed.js",
+    "service-worker.js": "/spbu/service-worker.js",
+    "static/css/main.352e7557.chunk.css.map": "/spbu/static/css/main.352e7557.chunk.css.map"
+  }
+}
