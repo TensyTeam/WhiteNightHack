@@ -8,7 +8,9 @@ class Map extends React.Component {
 	constructor (props) {
 		super(props)
 		this.state = {
+			balance: 100,
 			panel: 'find',
+			time: null,
             center: [30.3165, 59.9392],
 			coordinates: { lat: null, long: null },
 			scooters: [[30.342459, 59.914796]]
@@ -18,7 +20,6 @@ class Map extends React.Component {
 	}
 
     componentDidMount() {
-		// localStorage.setItem('coordinates', '');
 		localStorage.setItem('scooters', JSON.stringify(this.state.scooters));
 
 		var mapboxgl = require('mapbox-gl/dist/mapbox-gl.js');
@@ -46,13 +47,37 @@ class Map extends React.Component {
 		});
 
         map.on('load', function () {
+
+			// var layers = map.getStyle().layers;
+			// var firstSymbolId;
+			// for (var i = 0; i < layers.length; i++) {
+			//     if (layers[i].type === 'symbol') {
+			//         firstSymbolId = layers[i].id;
+			//         break;
+			//     }
+			// }
+			//
+			// map.addLayer({
+			// 	'id': 'urban-areas-fill',
+			// 	'type': 'fill',
+			// 	'source': {
+			// 		'type': 'geojson',
+			// 		'data': 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_urban_areas.geojson'
+			// 	},
+			// 	'layout': {},
+			// 	'paint': {
+			// 		'fill-color': '#f08',
+			// 		'fill-opacity': 0.4
+			// 	}
+			// }, firstSymbolId);
+
 			let scooters = JSON.parse(localStorage.getItem('scooters'));
 			for(let i = 0; i < scooters.length; i++) {
 				let scooters = JSON.parse(localStorage.getItem('scooters'));
 				let coordinates = scooters[i];
 				let point = 'scooter#'+i;
 
-				map.loadImage('https://i.ibb.co/HXTWdct/scooter.png', function(error, image) {
+				map.loadImage('https://i.ibb.co/Q9Bq7x8/scooter.png', function(error, image) {
 					if (error)
 						throw error;
 					map.addImage('scooter', image);
@@ -76,34 +101,10 @@ class Map extends React.Component {
 						},
 						"layout": {
 							"icon-image": "scooter",
-							"icon-size": 0.1
+							"icon-size": 0.06
 						}
 					});
 				});
-
-				// map.addSource(point, {
-				// 	"type" : "geojson",
-				// 	"data" : {
-				// 	    "type": "FeatureCollection",
-				// 	    "features": [{
-				//             "type": "Feature",
-				//             "geometry": {
-				//                 "type": "Point",
-				//                 "coordinates": coordinates
-				//             }
-				//         }]
-				// 	}
-				// });
-				//
-				// map.addLayer({
-				//     "id": point,
-				//     "type": "circle",
-				//     "source": point,
-				//     "paint": {
-				//         "circle-radius": 6,
-				//         "circle-color": '#e74c3c'
-				//     }
-				// });
 
 				map.on('click', point, function (e) {
 					let scooters = JSON.parse(localStorage.getItem('scooters'));
@@ -134,6 +135,36 @@ class Map extends React.Component {
 
 	onChangePanel(_panel) {
 		this.setState({ panel: _panel });
+		if(_panel === 'book') {
+			this.setState({ time: '5:00' });
+			let _time = 300;
+			let timer1 = setInterval(() => {
+				if(this.state.panel === 'book') {
+					_time = _time - 1;
+					let _sec = _time;
+					let _min = Math.floor(_sec / 60);
+					_sec %= 60;
+					this.setState({ time: _min + ':' + _sec });
+				} else {
+					clearInterval(timer1)
+				};
+			}, 1000);
+		}
+		if(_panel === 'start') {
+			this.setState({ time: '0:00' });
+			let _time_start = 0;
+			let timer2 = setInterval(() => {
+				if(this.state.panel === 'start') {
+					_time_start = _time_start + 1;
+					let _sec = _time_start;
+					let _min = Math.floor(_sec / 60);
+					_sec %= 60;
+					this.setState({ time: _min + ':' + _sec });
+				} else {
+					clearInterval(timer2)
+				};
+			}, 1000);
+		}
 	}
 
 	onGeolocation() {
@@ -149,7 +180,7 @@ class Map extends React.Component {
     render() {
         return (
 			<div className="map">
-				<div id="panel">
+				<div className="panel panel-left">
 					<div onClick={()=>{this.onChangePanel('profile')}}>
 						<i className="fas fa-user"></i>
 					</div>
@@ -158,6 +189,11 @@ class Map extends React.Component {
 					</div>
 					<div onClick={()=>{this.onGeolocation()}} id="btn-now">
 						<i className="fas fa-location-arrow"></i>
+					</div>
+				</div>
+				<div className="panel panel-right">
+					<div>
+						{ this.state.balance } <i className="fas fa-dice-d6"></i>
 					</div>
 				</div>
 				<div id="mapbox"></div>
@@ -178,22 +214,62 @@ class Map extends React.Component {
 									<i className="fas fa-bolt"></i> 59 %
 								</div>
 							</div>
-							<div id="scooter-play" onClick={()=>{this.onChangePanel('start')}}>
-								START
+							<div id="scooter-play" onClick={()=>{this.onChangePanel('book')}}>
+								BOOK
 							</div>
 						</React.Fragment>
 					}
 					{this.state.panel === 'profile' &&
 						<React.Fragment>
-							<div id="scooter-name">
-								User
+							<div className="scooter-block">
+								<div className="scooter-profile">
+									Mike Petrov
+								</div>
+								<div className="scooter-profile">
+									Trip: 5
+								</div>
+								<div className="scooter-profile">
+									4.2 / 5 <i className="fas fa-star"></i>
+								</div>
+							</div>
+						</React.Fragment>
+					}
+					{this.state.panel === 'book' &&
+						<React.Fragment>
+							<div className="scooter-block">
+								<div id="scooter-time">
+									{ this.state.time }
+								</div>
+								<div>
+									<input id="scooter-input" placeholder="Finish point (discount 10%)"/>
+								</div>
+								<div id="scooter-play" onClick={()=>{this.onChangePanel('start')}}>
+									START
+								</div>
 							</div>
 						</React.Fragment>
 					}
 					{this.state.panel === 'start' &&
 						<React.Fragment>
-							<div id="scooter-name">
-								Start
+							<div className="scooter-block">
+								<div id="scooter-time">
+									{ this.state.time }
+								</div>
+								<div id="scooter-play" onClick={()=>{this.onChangePanel('finish')}}>
+									Finish
+								</div>
+							</div>
+						</React.Fragment>
+					}
+					{this.state.panel === 'finish' &&
+						<React.Fragment>
+							<div className="scooter-block">
+								<div id="scooter-time">
+									{ this.state.time }
+								</div>
+								<div id="scooter-play" onClick={()=>{this.onChangePanel('find')}}>
+									Ok
+								</div>
 							</div>
 						</React.Fragment>
 					}
