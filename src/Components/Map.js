@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 
+
+import { data } from './data'
+
 import '../style.css';
 
 
@@ -58,18 +61,25 @@ class Map extends React.Component {
 			}
 
 			map.addLayer({
-				'id': 'urban-areas-fill',
+				'id': 'areas-fill',
 				'type': 'fill',
 				'source': {
 					'type': 'geojson',
-					'data': 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_urban_areas.geojson'
+					'data': data
 				},
 				'layout': {},
 				'paint': {
-					'fill-color': '#f08',
-					'fill-opacity': 0.4
+					'fill-color': '#e20074',
+					'fill-opacity': 0.5
 				}
 			}, firstSymbolId);
+
+			map.on('click', 'areas-fill', function (e) {
+				new mapboxgl.Popup()
+				.setLngLat(e.lngLat)
+				.setHTML(e.features[0].properties.name)
+				.addTo(map);
+			});
 
 			let scooters = JSON.parse(localStorage.getItem('scooters'));
 			for(let i = 0; i < scooters.length; i++) {

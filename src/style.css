@@ -38,8 +38,13 @@ a {
     background: #fff;
 }
 
-.panel div:hover {
+.panel-left div:hover {
     background: #dadada;
+}
+
+.panel-left .fas {
+    color: #e20074;
+    cursor: pointer;
 }
 
 #mapbox {
@@ -92,11 +97,6 @@ td {
 
 .date {
     color: #34495e;
-}
-
-.fas {
-    color: #e20074;
-    cursor: pointer;
 }
 
 .open {
