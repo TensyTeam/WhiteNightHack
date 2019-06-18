@@ -14,12 +14,14 @@ class Map extends React.Component {
 			balance: 100,
 			panel: 'find',
 			time: null,
+			scooterCurrent: 0,
             center: [30.3165, 59.9392],
 			coordinates: { lat: null, long: null },
-			scooters: [[30.342459, 59.914796]]
+			scooters: [[30.340634, 59.915352],[30.339220, 59.913066]]
 		}
 		this.onChangePanel = this.onChangePanel.bind(this);
 		this.onGeolocation = this.onGeolocation.bind(this);
+		this.onUpdateScooter = this.onUpdateScooter.bind(this);
 	}
 
     componentDidMount() {
@@ -86,13 +88,14 @@ class Map extends React.Component {
 				let scooters = JSON.parse(localStorage.getItem('scooters'));
 				let coordinates = scooters[i];
 				let point = 'scooter#'+i;
+				let img = 'https://i.ibb.co/Q9Bq7x8/scooter.png'
 
-				map.loadImage('https://i.ibb.co/Q9Bq7x8/scooter.png', function(error, image) {
+				map.loadImage(img, function(error, image) {
 					if (error)
 						throw error;
-					map.addImage('scooter', image);
+					map.addImage(point, image);
 					map.addLayer({
-						"id": "point",
+						"id": point,
 						"type": "symbol",
 						"source": {
 							"type": "geojson",
@@ -110,7 +113,7 @@ class Map extends React.Component {
 							}
 						},
 						"layout": {
-							"icon-image": "scooter",
+							"icon-image": point,
 							"icon-size": 0.06
 						}
 					});
@@ -119,7 +122,7 @@ class Map extends React.Component {
 				map.on('click', point, function (e) {
 					let scooters = JSON.parse(localStorage.getItem('scooters'));
 					let coordinates = scooters[i];
-					let description = 'Scooter#' + i;
+					let description = 'Scooter_' + i;
 
 					map.flyTo({
 						center: coordinates,
@@ -187,6 +190,16 @@ class Map extends React.Component {
 		});
 	}
 
+	onUpdateScooter(_panel) {
+		let _panel_current = Number(this.state.scooterCurrent);
+		if(_panel === 'previous') {
+			_panel_current = _panel_current - 1;
+		} else if(_panel === 'next') {
+			_panel_current = _panel_current + 1;
+		}
+		this.setState({ scooterCurrent: _panel_current });
+	}
+
     render() {
         return (
 			<div className="map">
@@ -210,23 +223,106 @@ class Map extends React.Component {
 				<div id="package">
 					{this.state.panel === 'find' &&
 						<React.Fragment>
-							<div>
-								<img src="./img/scooter.png" />
-							</div>
-							<div className="scooter-info">
-								<div id="scooter-number">
-									<i className="fas fa-hashtag"></i> 225403
+							{this.state.scooterCurrent === 0 ?
+								<div className="disabled">
+									<i className="fas fas-lg-left fa-angle-left"></i>
+								</div> :
+								<div onClick={()=>{this.onUpdateScooter('previous')}}>
+									<i className="fas fas-lg-left fa-angle-left"></i>
 								</div>
-								<div id="scooter-name">
-									Xiaomi
+							}
+							{this.state.scooterCurrent === 0 &&
+								<React.Fragment>
+									<div>
+										<img src="./img/scooter1.png" />
+									</div>
+									<div className="scooter-info">
+										<div id="scooter-number">
+											<i className="fas fa-hashtag"></i> 225403
+										</div>
+										<div id="scooter-name">
+											Xiaomi
+										</div>
+										<div id="scooter-energy">
+											<i className="fas fa-bolt"></i> 100 %
+										</div>
+									</div>
+									<div id="scooter-play" onClick={()=>{this.onChangePanel('book')}}>
+										BOOK
+									</div>
+								</React.Fragment>
+							}
+							{this.state.scooterCurrent === 1 &&
+								<React.Fragment>
+									<div>
+										<img src="./img/area1.png" />
+									</div>
+									<div className="scooter-info">
+										<div id="scooter-number">
+											<i className="fas fa-hashtag"></i> 1
+										</div>
+										<div id="scooter-name">
+											Area
+										</div>
+										<div id="scooter-energy">
+											~ 2 min
+										</div>
+									</div>
+									<div id="scooter-play" onClick={()=>{this.onChangePanel('book')}}>
+										BOOK
+									</div>
+								</React.Fragment>
+							}
+							{this.state.scooterCurrent === 2 &&
+								<React.Fragment>
+									<div>
+										<img src="./img/scooter2.png" />
+									</div>
+									<div className="scooter-info">
+										<div id="scooter-number">
+											<i className="fas fa-hashtag"></i> 1425024
+										</div>
+										<div id="scooter-name">
+											Xiaomi
+										</div>
+										<div id="scooter-energy">
+											<i className="fas fa-bolt"></i> 59 %
+										</div>
+									</div>
+									<div id="scooter-play" onClick={()=>{this.onChangePanel('book')}}>
+										BOOK
+									</div>
+								</React.Fragment>
+							}
+							{this.state.scooterCurrent === 3 &&
+								<React.Fragment>
+									<div>
+										<img src="./img/area2.png" />
+									</div>
+									<div className="scooter-info">
+										<div id="scooter-number">
+											<i className="fas fa-hashtag"></i> 2
+										</div>
+										<div id="scooter-name">
+											Area
+										</div>
+										<div id="scooter-energy">
+											~ 5 min
+										</div>
+									</div>
+									<div id="scooter-play" onClick={()=>{this.onChangePanel('book')}}>
+										BOOK
+									</div>
+								</React.Fragment>
+							}
+							{this.state.scooterCurrent === 3 ?
+								<div className="disabled">
+									<i className="fas fas-lg-right fa-angle-right"></i>
+								</div> :
+								<div onClick={()=>{this.onUpdateScooter('next')}}>
+									<i className="fas fas-lg-right fa-angle-right"></i>
 								</div>
-								<div id="scooter-energy">
-									<i className="fas fa-bolt"></i> 59 %
-								</div>
-							</div>
-							<div id="scooter-play" onClick={()=>{this.onChangePanel('book')}}>
-								BOOK
-							</div>
+							}
 						</React.Fragment>
 					}
 					{this.state.panel === 'profile' &&

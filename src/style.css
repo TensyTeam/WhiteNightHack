@@ -65,6 +65,8 @@ a {
     padding: 20px 0;
     background: #fff;
     color: #e20074;
+    margin: 20px;
+    border-radius: 6px;
 }
 
 .title {
@@ -178,6 +180,11 @@ td {
     height: auto;
 }
 
+#img {
+    height: 300px;
+    width: auto;
+}
+
 .popup_close {
     padding: 15px;
     position: absolute;
@@ -211,7 +218,7 @@ td {
 }
 
 .scooter-info {
-    margin: 0 40px;
+    margin: 0 30px;
 }
 
 #scooter-play {
@@ -247,4 +254,20 @@ td {
 
 .scooter-profile {
     margin: 10px 0;
+}
+
+.fas-lg-right {
+    font-size: 20px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.fas-lg-left {
+    font-size: 20px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.disabled {
+    color: #ccc;
 }
