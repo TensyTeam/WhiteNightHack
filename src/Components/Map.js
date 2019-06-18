@@ -48,28 +48,28 @@ class Map extends React.Component {
 
         map.on('load', function () {
 
-			// var layers = map.getStyle().layers;
-			// var firstSymbolId;
-			// for (var i = 0; i < layers.length; i++) {
-			//     if (layers[i].type === 'symbol') {
-			//         firstSymbolId = layers[i].id;
-			//         break;
-			//     }
-			// }
-			//
-			// map.addLayer({
-			// 	'id': 'urban-areas-fill',
-			// 	'type': 'fill',
-			// 	'source': {
-			// 		'type': 'geojson',
-			// 		'data': 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_urban_areas.geojson'
-			// 	},
-			// 	'layout': {},
-			// 	'paint': {
-			// 		'fill-color': '#f08',
-			// 		'fill-opacity': 0.4
-			// 	}
-			// }, firstSymbolId);
+			var layers = map.getStyle().layers;
+			var firstSymbolId;
+			for (var i = 0; i < layers.length; i++) {
+			    if (layers[i].type === 'symbol') {
+			        firstSymbolId = layers[i].id;
+			        break;
+			    }
+			}
+
+			map.addLayer({
+				'id': 'urban-areas-fill',
+				'type': 'fill',
+				'source': {
+					'type': 'geojson',
+					'data': 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_urban_areas.geojson'
+				},
+				'layout': {},
+				'paint': {
+					'fill-color': '#f08',
+					'fill-opacity': 0.4
+				}
+			}, firstSymbolId);
 
 			let scooters = JSON.parse(localStorage.getItem('scooters'));
 			for(let i = 0; i < scooters.length; i++) {
