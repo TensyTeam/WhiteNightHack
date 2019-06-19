@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/WhiteNightHack/static/css/main.bcd3c94d.chunk.css",
-    "main.js": "/WhiteNightHack/static/js/main.9fd85e1b.chunk.js",
-    "main.js.map": "/WhiteNightHack/static/js/main.9fd85e1b.chunk.js.map",
+    "main.js": "/WhiteNightHack/static/js/main.eba4672a.chunk.js",
+    "main.js.map": "/WhiteNightHack/static/js/main.eba4672a.chunk.js.map",
     "runtime~main.js": "/WhiteNightHack/static/js/runtime~main.ca151b57.js",
     "runtime~main.js.map": "/WhiteNightHack/static/js/runtime~main.ca151b57.js.map",
     "static/js/2.8edaee33.chunk.js": "/WhiteNightHack/static/js/2.8edaee33.chunk.js",
     "static/js/2.8edaee33.chunk.js.map": "/WhiteNightHack/static/js/2.8edaee33.chunk.js.map",
     "index.html": "/WhiteNightHack/index.html",
-    "precache-manifest.cbd7cda0f22df6109892a391dd07672d.js": "/WhiteNightHack/precache-manifest.cbd7cda0f22df6109892a391dd07672d.js",
+    "precache-manifest.bbb614c19f39f59c45e2b99d4c7478f4.js": "/WhiteNightHack/precache-manifest.bbb614c19f39f59c45e2b99d4c7478f4.js",
     "service-worker.js": "/WhiteNightHack/service-worker.js",
     "static/css/main.bcd3c94d.chunk.css.map": "/WhiteNightHack/static/css/main.bcd3c94d.chunk.css.map"
   }
