@@ -3,8 +3,6 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import io from "socket.io-client";
 
-import { rentStart } from "./Func/request";
-
 const backendUrl = "https://0c04d624.ngrok.io";
 
 export const getQrCode = (socketName, query) => {
@@ -42,7 +40,3 @@ const f = async () => {
 };
 
 f();
-
-rentStart.then(r => {
-    console.log(r);
-});
