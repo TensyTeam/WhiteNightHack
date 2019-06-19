@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "72488741b24d106186bed9d47802135e",
+    "revision": "d4cdb0a3a6c5d8ffb12c07add9abb045",
     "url": "/WhiteNightHack/index.html"
   },
   {
-    "revision": "3d9e6fe7a948a05a138e",
+    "revision": "fa9116a2092461bea4c3",
     "url": "/WhiteNightHack/static/css/main.bcd3c94d.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/WhiteNightHack/static/js/2.8edaee33.chunk.js"
   },
   {
-    "revision": "3d9e6fe7a948a05a138e",
-    "url": "/WhiteNightHack/static/js/main.eba4672a.chunk.js"
+    "revision": "fa9116a2092461bea4c3",
+    "url": "/WhiteNightHack/static/js/main.9fd85e1b.chunk.js"
   },
   {
     "revision": "1a0a26c769de381ef072",
