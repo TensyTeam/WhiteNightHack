@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import io from "socket.io-client";
 
-const backendUrl = "https://e94dc841.ngrok.io";
+const backendUrl = "https://0c04d624.ngrok.io";
 
 export const getQrCode = (socketName, query) => {
     const socket = io(`${backendUrl}/${socketName}/`, {
