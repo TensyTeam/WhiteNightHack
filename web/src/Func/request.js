@@ -44,3 +44,13 @@ export const rentStart = fetch(`${pythonUrl}/rentStart`)
 .then(function(response) {
   return response.json();
 });
+
+export const addScooter = fetch(`${pythonUrl}/addScooter`)
+.then(function(response) {
+  return response.json();
+});
+
+export const expireScooter = fetch(`${pythonUrl}/expireScooter`)
+.then(function(response) {
+  return response.json();
+});
