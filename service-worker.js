@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/WhiteNightHack/precache-manifest.0fb726e3fd06490526e8c152b192835d.js"
+  "/WhiteNightHack/precache-manifest.bbb614c19f39f59c45e2b99d4c7478f4.js"
 );
 
 self.addEventListener('message', (event) => {
