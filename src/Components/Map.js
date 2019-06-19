@@ -17,7 +17,7 @@ class Map extends React.Component {
 			scooterCurrent: 0,
             center: [30.3165, 59.9392],
 			coordinates: { lat: null, long: null },
-			scooters: [[30.340634, 59.915352],[30.339220, 59.913066]]
+			scooters: [[30.339220, 59.913066]]
 		}
 		this.onChangePanel = this.onChangePanel.bind(this);
 		this.onGeolocation = this.onGeolocation.bind(this);
@@ -234,7 +234,7 @@ class Map extends React.Component {
 							{this.state.scooterCurrent === 0 &&
 								<React.Fragment>
 									<div>
-										<img src="./img/scooter1.png" />
+										<img src="./img/scooter.png" />
 									</div>
 									<div className="scooter-info">
 										<div id="scooter-number">
@@ -255,7 +255,7 @@ class Map extends React.Component {
 							{this.state.scooterCurrent === 1 &&
 								<React.Fragment>
 									<div>
-										<img src="./img/area1.png" />
+										<img src="./img/area.png" />
 									</div>
 									<div className="scooter-info">
 										<div id="scooter-number">
@@ -276,28 +276,7 @@ class Map extends React.Component {
 							{this.state.scooterCurrent === 2 &&
 								<React.Fragment>
 									<div>
-										<img src="./img/scooter2.png" />
-									</div>
-									<div className="scooter-info">
-										<div id="scooter-number">
-											<i className="fas fa-hashtag"></i> 1425024
-										</div>
-										<div id="scooter-name">
-											Xiaomi
-										</div>
-										<div id="scooter-energy">
-											<i className="fas fa-bolt"></i> 59 %
-										</div>
-									</div>
-									<div id="scooter-play" onClick={()=>{this.onChangePanel('book')}}>
-										BOOK
-									</div>
-								</React.Fragment>
-							}
-							{this.state.scooterCurrent === 3 &&
-								<React.Fragment>
-									<div>
-										<img src="./img/area2.png" />
+										<img src="./img/area.png" />
 									</div>
 									<div className="scooter-info">
 										<div id="scooter-number">
@@ -308,6 +287,27 @@ class Map extends React.Component {
 										</div>
 										<div id="scooter-energy">
 											~ 5 min
+										</div>
+									</div>
+									<div id="scooter-play" onClick={()=>{this.onChangePanel('book')}}>
+										BOOK
+									</div>
+								</React.Fragment>
+							}
+							{this.state.scooterCurrent === 3 &&
+								<React.Fragment>
+									<div>
+										<img src="./img/area.png" />
+									</div>
+									<div className="scooter-info">
+										<div id="scooter-number">
+											<i className="fas fa-hashtag"></i> 3
+										</div>
+										<div id="scooter-name">
+											Area
+										</div>
+										<div id="scooter-energy">
+											~ 10 min
 										</div>
 									</div>
 									<div id="scooter-play" onClick={()=>{this.onChangePanel('book')}}>
@@ -347,7 +347,7 @@ class Map extends React.Component {
 									{ this.state.time }
 								</div>
 								<div>
-									<input id="scooter-input" placeholder="Finish point (discount 10%)"/>
+									<input id="scooter-input" placeholder="Finish point (discount)"/>
 								</div>
 								<div id="scooter-play" onClick={()=>{this.onChangePanel('start')}}>
 									START
