@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import io from "socket.io-client";
 
+import { rentStart } from "./Func/request";
+
 const backendUrl = "https://0c04d624.ngrok.io";
 
 export const getQrCode = (socketName, query) => {
@@ -29,14 +31,18 @@ export const awaitStatus = ({ socket, identifier }) => {
 };
 
 const f = async () => {
-    const { qrCode: ssoQrCode, socket, identifier } = await getQrCode("authenticate");
+    // const { qrCode: ssoQrCode, socket, identifier } = await getQrCode("authenticate");
 
-    const img = document.getElementById("img");
-    img.src = ssoQrCode;
+    // const img = document.getElementById("img");
+    // img.src = ssoQrCode;
 
-    const response = await awaitStatus({ socket, identifier })
+    // const response = await awaitStatus({ socket, identifier })
 
     ReactDOM.render(<App />, document.getElementById("root"));
 };
 
 f();
+
+rentStart.then(r => {
+    console.log(r);
+});
